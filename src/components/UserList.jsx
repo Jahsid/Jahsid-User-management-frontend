@@ -1,8 +1,9 @@
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const UserList = ({ users, refreshUsers, setSelectedUser }) => {
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:5000/api/users/${id}`);
+    await axios.delete(`${apiUrl}/${id}`);
     refreshUsers();
   };
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import UserForm from "./components/UserForm";
 import UserList from "./components/UserList";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ const App = () => {
 
   const refreshUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users');
+      const response = await axios.get(apiUrl);
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching users:", error);

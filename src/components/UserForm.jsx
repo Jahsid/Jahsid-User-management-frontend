@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const UserForm = ({ selectedUser, refreshUsers }) => {
   const [user, setUser] = useState({
@@ -17,9 +18,9 @@ const UserForm = ({ selectedUser, refreshUsers }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (selectedUser) {
-      await axios.put(`http://localhost:5000/api/users/${selectedUser._id}`, user);
+      await axios.put(`${apiUrl}/${selectedUser._id}`, user);
     } else {
-      await axios.post('http://localhost:5000/api/users', user);
+      await axios.post(apiUrl, user);
     }
     refreshUsers();
     setUser({ firstName: '', lastName: '', phoneNumber: '', email: '', address: '' });
